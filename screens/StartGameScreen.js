@@ -13,8 +13,12 @@ const StartGameScreen = () => {
         autoCorrect={false}
       />
       <View style={styles.ButtonContainer}>
+        <view style={styles.ButtonContainerInner}>
         <PrimaryButton>Confirm</PrimaryButton>
+        </view>
+        <View style={styles.ButtonContainerInner}>
         <PrimaryButton>Reset</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -45,10 +49,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   ButtonContainer: {
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
   },
+  ButtonContainerInner: {
+    flex: 1
+  }
 });
 
 export default StartGameScreen;
