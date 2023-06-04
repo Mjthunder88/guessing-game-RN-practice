@@ -3,28 +3,28 @@ import { useState } from "react";
 
 import PrimaryButton from "../components/PirmaryButton";
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ onConfirmNumber }) => {
+  const [enteredNumber, setEnteredNumber] = useState("");
 
-const [enteredNumber, setEnteredNumber] = useState('')
+  let numberInputHandler = (enteredText) => {
+    setEnteredNumber(enteredText);
+  };
 
-let numberInputHandler = (enteredText) => {
-  setEnteredNumber(enteredText)
-}
+  let resetInputHandler = () => {
+    setEnteredNumber("");
+  };
 
-let resetInputHandler = () => {
-  setEnteredNumber('')
-}
+  let confirmInputHandler = () => {
+    const chosenNumber = parseInt(enteredNumber);
 
-let confirmInputHandler = () => {
-  const chosenNumber = parseInt(enteredNumber);
-
-  if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-    Alert.alert('Invalid Number', "Number has to be a number between 1-99.", [{text: 'Okay',style: 'destructive', onPress: resetInputHandler}])
-    return;
-  }
-  console.log("valid Number")
-
-}
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      Alert.alert("Invalid Number", "Number has to be a number between 1-99.", [
+        { text: "Okay", style: "destructive", onPress: resetInputHandler },
+      ]);
+      return;
+    }
+    onConfirmNumber(chosenNumber);
+  };
 
   return (
     <View style={styles.inputContainer}>
@@ -39,10 +39,10 @@ let confirmInputHandler = () => {
       />
       <View style={styles.ButtonContainer}>
         <View style={styles.ButtonContainerInner}>
-        <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
         </View>
         <View style={styles.ButtonContainerInner}>
-        <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
         </View>
       </View>
     </View>
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   ButtonContainerInner: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default StartGameScreen;
