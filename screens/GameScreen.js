@@ -9,8 +9,6 @@ import Colors from "../constants/Colors";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PirmaryButton";
 
-let minBoundry = 1;
-let maxBoundry = 100;
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
@@ -21,9 +19,12 @@ function generateRandomBetween(min, max, exclude) {
   }
 }
 
+let minBoundary = 1;
+let maxBoundary = 100;
+
 
 const GameScreen = ({ userNumber }) => {
-  const initalGuess = generateRandomBetween(minBoundry, maxBoundry, userNumber);
+  const initalGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initalGuess);
 
   let nextGuessHandler = (direction) => {
@@ -36,20 +37,20 @@ const GameScreen = ({ userNumber }) => {
       ]);
       return;
     }
-    console.log(minBoundry, maxBoundry)
+    console.log(minBoundary, maxBoundary)
 
     if (direction === "lower") {
-      maxBoundry = currentGuess;
+      maxBoundary = currentGuess;
     } else {
-      minBoundry = currentGuess + 1;
-      const newRandomNum = generateRandomBetween(
-        minBoundry,
-        maxBoundry,
-        currentGuess
-      );
-      setCurrentGuess(newRandomNum);
-    }
-  };
+      minBoundary = currentGuess + 1;
+    };
+    const newRandomNum = generateRandomBetween(
+      minBoundary,
+      maxBoundary,
+      currentGuess
+    );
+    setCurrentGuess(newRandomNum);
+  }
 
   return (
     <View style={styles.screen}>
