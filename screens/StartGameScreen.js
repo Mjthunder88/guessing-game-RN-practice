@@ -1,7 +1,9 @@
 import { TextInput, View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 
-import PrimaryButton from "../components/PirmaryButton";
+import Colors from "../constants/Colors";
+
+import PrimaryButton from "../components/ui/PirmaryButton";
 
 const StartGameScreen = ({ onConfirmNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState("");
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     borderRadius: 10,
-    backgroundColor: "#222E50",
+    backgroundColor: Colors.accent500,
     shadowColor: "black",
     shadowOffset: { width: 5, height: 8 },
     shadowRadius: 5,
@@ -66,9 +68,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 100,
     fontSize: 32,
-    borderBottomColor: "#C2E7D9",
+    borderBottomColor: Colors.Primary500,
     borderBottomWidth: 1.5,
-    color: "#C2E7D9",
+    color: Colors.Primary500,
     marginVertical: 8,
     fontWeight: "bold",
     textAlign: "center",
